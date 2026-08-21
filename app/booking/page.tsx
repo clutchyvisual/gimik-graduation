@@ -1,17 +1,34 @@
+'use client'
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+
 export default function BookingPage() {
-  const dataBooking = [
+  const [bookings, setBookings] = useState([
     { kode: "GMK-260815-043", nama: "Dien Fitriani Azzahra", tanggal: "16 Aug 2026", paket: "Group Package", status: "Scheduled", bayar: "Belum Bayar" },
     { kode: "GMK-260815-044", nama: "Ni Made Indira Destania", tanggal: "29 Aug 2026", paket: "Group Package", status: "Scheduled", bayar: "Lunas" },
-    { kode: "GMK-260815-040", nama: "Muhammad Razzan", tanggal: "22 Aug 2026", paket: "Personal Package 2", status: "Scheduled", bayar: "Belum Bayar" },
-  ];
+  ])
+
+  useEffect(() => {
+    // Memuat data tambahan hasil import dari memori browser
+    const savedBookings = localStorage.getItem('gimik_bookings')
+    if (savedBookings) {
+      setBookings(prev => [...JSON.parse(savedBookings), ...prev])
+    }
+  }, [])
 
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Daftar Booking</h1>
-        <button className="bg-yellow-400 text-yellow-900 px-4 py-2 rounded-md font-semibold text-sm shadow-sm hover:bg-yellow-500">
-          + Buat Booking Baru
-        </button>
+        <div>
+          <h1 className="text-2xl font-bold">Daftar Booking</h1>
+          <p className="text-xs text-gray-500">Total data aktif: {bookings.length} booking</p>
+        </div>
+        <Link 
+          href="/booking-cepat" 
+          className="bg-orange-500 text-white px-4 py-2 rounded-md font-semibold text-sm shadow-sm hover:bg-orange-600 transition"
+        >
+          + Import dari Spreadsheet
+        </Link>
       </div>
 
       {/* Tabel Data */}
@@ -28,7 +45,7 @@ export default function BookingPage() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 text-sm">
-            {dataBooking.map((item, index) => (
+            {bookings.map((item, index) => (
               <tr key={index} className="hover:bg-gray-50">
                 <td className="p-4 font-medium text-orange-600">{item.kode}</td>
                 <td className="p-4 font-semibold">{item.nama}</td>
@@ -56,5 +73,5 @@ export default function BookingPage() {
         </table>
       </div>
     </div>
-  );
+  )
 }

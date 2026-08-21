@@ -26,9 +26,8 @@ export default function RootLayout({
             <Link href="/" className="block p-2 rounded-lg bg-orange-50 text-orange-600">Dashboard</Link>
             
             <div className="pt-4 pb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">Operasional</div>
-            <Link href="/" className="block p-2 rounded-lg hover:bg-gray-100">Dashboard Cepat</Link>
-            <Link href="#" className="block p-2 rounded-lg hover:bg-gray-100">Workboard</Link>
-            <Link href="/booking" className="flex justify-between p-2 rounded-lg hover:bg-gray-100 font-medium text-gray-900 bg-gray-100">
+            <Link href="/booking-cepat" className="block p-2 rounded-lg hover:bg-gray-100">Booking Cepat (Import)</Link>
+            <Link href="/booking" className="flex justify-between p-2 rounded-lg hover:bg-gray-100 font-medium text-gray-900">
               Booking <span className="bg-orange-100 text-orange-600 py-0.5 px-2 rounded-full text-xs">33</span>
             </Link>
             
